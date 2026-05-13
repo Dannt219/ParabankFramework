@@ -2,11 +2,14 @@
 
 A production-grade UI test automation framework for the [ParaBank](https://parabank.parasoft.com/parabank/index.htm) demo banking application, built with **Java 17**, **Selenium WebDriver 4**, **TestNG**, and **Allure**. Designed around the Page Object Model with a clean separation between locators, page actions, and test logic.
 
+[![CI](https://github.com/Dannt219/ParabankFramework/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Dannt219/ParabankFramework/actions/workflows/ci.yml)
+[![Allure Report](https://img.shields.io/badge/Allure-Report-yellow?logo=qameta)](https://dannt219.github.io/ParabankFramework/)
 [![Java](https://img.shields.io/badge/Java-17-007396?logo=openjdk&logoColor=white)](https://openjdk.org/projects/jdk/17/)
 [![Selenium](https://img.shields.io/badge/Selenium-4.18-43B02A?logo=selenium&logoColor=white)](https://www.selenium.dev/)
 [![TestNG](https://img.shields.io/badge/TestNG-7.9-orange)](https://testng.org/)
 [![Allure](https://img.shields.io/badge/Allure-2.25-yellow)](https://allurereport.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.9-C71A36?logo=apache-maven&logoColor=white)](https://maven.apache.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
 
 ---
 
@@ -22,6 +25,7 @@ A production-grade UI test automation framework for the [ParaBank](https://parab
 - [Getting Started](#getting-started)
 - [Running Tests](#running-tests)
 - [Test Reporting](#test-reporting)
+- [Continuous Integration](#continuous-integration)
 - [Configuration](#configuration)
 - [Coding Conventions](#coding-conventions)
 - [Roadmap](#roadmap)
@@ -294,6 +298,35 @@ mvn allure:report
 # Output: target/site/allure-maven-plugin/index.html
 ```
 
+### Live report (latest CI run)
+
+Every push to `main` publishes the Allure report to **[GitHub Pages](https://dannt219.github.io/ParabankFramework/)**.
+
+---
+
+## Continuous Integration
+
+Every push and pull request triggers the **[CI workflow](.github/workflows/ci.yml)** which:
+
+1. Provisions JDK 17 (Temurin) on `ubuntu-latest` with Maven dependency caching
+2. Runs the smoke suite headlessly in Chrome
+3. Generates an Allure HTML report and uploads it as a build artifact (downloadable from the Actions tab)
+4. On `main`, publishes the report to **GitHub Pages** for stakeholders to inspect
+
+Manual runs are supported via **Actions → CI → Run workflow**, with selectable inputs for:
+
+- **Suite** — `smoke` (default) or `regression`
+- **Browser** — `chrome` (default) or `firefox`
+
+CLI overrides used by the workflow are equivalent to:
+
+```bash
+mvn -B clean test \
+  -Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml \
+  -Dheadless=true \
+  -Dbrowser=chrome
+```
+
 ---
 
 ## Configuration
@@ -340,7 +373,7 @@ mvn test -Dbrowser=firefox -Dheadless=true -Dbase.url=https://staging.example.co
 
 ## Roadmap
 
-- [ ] GitHub Actions CI pipeline with Allure published to GitHub Pages
+- [x] GitHub Actions CI pipeline with Allure published to GitHub Pages
 - [ ] Dockerised execution via Selenium Grid (`docker-compose.yml`)
 - [ ] REST API layer using RestAssured for faster test data setup
 - [ ] Retry mechanism for flaky tests (`IRetryAnalyzer`)
