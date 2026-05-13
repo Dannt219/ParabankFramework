@@ -13,7 +13,7 @@ public interface RegisterPageUI {
     String PASSWORD_INPUT = "id=customer.password";
     String CONFIRM_PASSWORD_INPUT = "id=repeatedPassword";
     String REGISTER_BUTTON = "//input[@value='Register']";
-    String SUCCESS_MESSAGE = "//div[@id='rightPanel']/h1";
-    String WELCOME_MESSAGE = "//div[@id='rightPanel']/p";
+    String SUCCESS_MESSAGE = "//div[@id='rightPanel']//h1";
+    String WELCOME_MESSAGE = "//div[@id='rightPanel']//p";
     String ERROR_MESSAGES = "//span[@class='error']";
 }

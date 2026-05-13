@@ -12,7 +12,7 @@ public interface BillPayPageUI {
     String AMOUNT_INPUT = "name=amount";
     String FROM_ACCOUNT_SELECT = "name=fromAccountId";
     String SEND_PAYMENT_BUTTON = "//input[@value='Send Payment']";
-    String SUCCESS_MESSAGE = "//div[@id='rightPanel']/h1";
-    String PAYMENT_DETAILS = "//div[@id='rightPanel']/p";
-    String PAGE_TITLE = "//div[@id='rightPanel']/h1";
+    String SUCCESS_MESSAGE = "//div[@id='rightPanel']//h1";
+    String PAYMENT_DETAILS = "//div[@id='rightPanel']//p";
+    String PAGE_TITLE = "//div[@id='rightPanel']//h1";
 }

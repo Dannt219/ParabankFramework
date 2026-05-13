@@ -13,5 +13,5 @@ public interface FindTransactionsPageUI {
     String FIND_BY_AMOUNT_BUTTON = "//button[@ng-click='criteria.searchType = \"AMOUNT\"'] | //div[@id='rightPanel']//button[4]";
     String TRANSACTION_RESULTS = "//table[@id='transactionTable']//tbody/tr";
     String NO_RESULTS_MESSAGE = "//div[@id='rightPanel']//p[@class='error'] | //div[@id='rightPanel']//*[contains(@class,'error')]";
-    String PAGE_TITLE = "//div[@id='rightPanel']/h1";
+    String PAGE_TITLE = "//div[@id='rightPanel']//h1";
 }

@@ -1,7 +1,7 @@
 package com.parabank.interfaces.pageUIs;
 
 public interface AccountOverviewPageUI {
-    String PAGE_TITLE = "//div[@id='rightPanel']/h1";
+    String PAGE_TITLE = "//div[@id='rightPanel']//h1";
     String ACCOUNTS_TABLE = "id=accountTable";
     String ACCOUNT_LINKS = "//table[@id='accountTable']//a";
     String LOGOUT_LINK = "link=Log Out";
