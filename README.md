@@ -245,6 +245,14 @@ mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml
 mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testng-regression.xml
 ```
 
+### Cross-browser smoke (Chrome + Firefox in parallel)
+
+```bash
+mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testng-crossbrowser.xml
+```
+
+> Use this locally to validate UI across browsers. Not recommended against the public ParaBank demo server, which cannot reliably handle two concurrent sessions of the same user.
+
 ### Run a single test class
 
 ```bash
