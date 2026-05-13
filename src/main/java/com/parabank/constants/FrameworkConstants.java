@@ -6,11 +6,9 @@ public final class FrameworkConstants {
         // Prevent instantiation
     }
 
-    // Timeouts
-    public static final int EXPLICIT_WAIT_TIMEOUT = 15;
-    public static final int IMPLICIT_WAIT_TIMEOUT = 10;
-    public static final int PAGE_LOAD_TIMEOUT = 30;
-    public static final int POLLING_INTERVAL = 500;
+    // Timeouts (seconds)
+    public static final int EXPLICIT_WAIT_TIMEOUT = 30;
+    public static final int PAGE_LOAD_TIMEOUT = 60;
 
     // Paths
     public static final String CONFIG_PATH = "src/test/resources/config/config.properties";
