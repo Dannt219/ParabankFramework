@@ -30,12 +30,13 @@ public class TransferFundsTest extends BaseTest {
     @Story("Valid Transfer")
     @Description("Verify successful fund transfer between accounts")
     public void testValidTransfer() {
-        transferFundsPage.transferFunds("100", 0, 0);
+        transferFundsPage.transferFunds("100", 0, 1);
 
         String successMessage = transferFundsPage.getSuccessMessage();
+        logger.info("Transfer page header: {}", successMessage);
         Assert.assertTrue(
                 successMessage.contains("Transfer Complete") || successMessage.contains("transferred"),
-                "Success message should indicate transfer completion");
+                "Success message should indicate transfer completion, but was: " + successMessage);
     }
 
     @Test(groups = {"regression"}, dataProvider = "transferAmounts",

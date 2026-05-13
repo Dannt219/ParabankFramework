@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -40,5 +41,23 @@ public class WaitHelper {
 
     public void waitForPageLoad() {
         wait.until(d -> ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public void waitForDropdownPopulated(By locator) {
+        logger.debug("Waiting for dropdown to be populated: {}", locator);
+        wait.until(d -> !new Select(d.findElement(locator)).getOptions().isEmpty());
+    }
+
+    public void waitForDropdownOptionCount(By locator, int minOptions) {
+        logger.debug("Waiting for dropdown to have at least {} options: {}", minOptions, locator);
+        wait.until(d -> new Select(d.findElement(locator)).getOptions().size() >= minOptions);
+    }
+
+    public void waitForAjax() {
+        wait.until(d -> {
+            Object active = ((JavascriptExecutor) d)
+                    .executeScript("return (typeof jQuery === 'undefined') ? 0 : jQuery.active");
+            return active instanceof Number n && n.intValue() == 0;
+        });
     }
 }

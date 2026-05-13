@@ -150,16 +150,19 @@ public abstract class BasePage {
 
     protected void selectItemInDropdownByText(String locator, String text) {
         waitForElementVisible(locator);
+        waitHelper.waitForDropdownPopulated(getByLocator(locator));
         new Select(getElement(locator)).selectByVisibleText(text);
     }
 
     protected void selectItemInDropdownByValue(String locator, String value) {
         waitForElementVisible(locator);
+        waitHelper.waitForDropdownPopulated(getByLocator(locator));
         new Select(getElement(locator)).selectByValue(value);
     }
 
     protected void selectItemInDropdownByIndex(String locator, int index) {
         waitForElementVisible(locator);
+        waitHelper.waitForDropdownOptionCount(getByLocator(locator), index + 1);
         new Select(getElement(locator)).selectByIndex(index);
     }
 }

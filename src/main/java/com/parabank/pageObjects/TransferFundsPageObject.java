@@ -43,6 +43,7 @@ public class TransferFundsPageObject extends BasePage {
 
     @Step("Transfer funds: amount={amount}")
     public void transferFunds(String amount, int fromIndex, int toIndex) {
+        waitHelper.waitForAjax();
         enterAmount(amount);
         selectFromAccountByIndex(fromIndex);
         selectToAccountByIndex(toIndex);
