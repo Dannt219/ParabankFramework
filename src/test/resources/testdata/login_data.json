@@ -1,0 +1,35 @@
+{
+  "validCredentials": [
+    {
+      "username": "john",
+      "password": "demo",
+      "description": "Default valid user"
+    }
+  ],
+  "invalidCredentials": [
+    {
+      "username": "invalidUser",
+      "password": "invalidPass",
+      "expectedError": "could not be verified",
+      "description": "Completely invalid credentials"
+    },
+    {
+      "username": "john",
+      "password": "wrongPassword",
+      "expectedError": "could not be verified",
+      "description": "Valid username with wrong password"
+    },
+    {
+      "username": "nonexistent",
+      "password": "demo",
+      "expectedError": "could not be verified",
+      "description": "Non-existent username with valid password"
+    },
+    {
+      "username": "",
+      "password": "",
+      "expectedError": "enter a username and password",
+      "description": "Empty credentials"
+    }
+  ]
+}

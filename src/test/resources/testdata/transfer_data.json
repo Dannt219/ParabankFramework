@@ -1,0 +1,42 @@
+{
+  "validTransfers": [
+    {
+      "amount": "10.00",
+      "description": "Small transfer amount"
+    },
+    {
+      "amount": "100.00",
+      "description": "Medium transfer amount"
+    },
+    {
+      "amount": "500.00",
+      "description": "Large transfer amount"
+    },
+    {
+      "amount": "0.01",
+      "description": "Minimum transfer amount"
+    }
+  ],
+  "invalidTransfers": [
+    {
+      "amount": "0",
+      "expectedError": "amount",
+      "description": "Zero amount transfer"
+    },
+    {
+      "amount": "-100",
+      "expectedError": "amount",
+      "description": "Negative amount transfer"
+    },
+    {
+      "amount": "abc",
+      "expectedError": "amount",
+      "description": "Non-numeric amount"
+    },
+    {
+      "amount": "",
+      "expectedError": "amount",
+      "description": "Empty amount"
+    }
+  ]
+}

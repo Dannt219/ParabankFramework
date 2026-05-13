@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ParaBank Regression Test Suite" parallel="tests" thread-count="2">
+
+    <test name="Chrome Regression Tests">
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.parabank.tests"/>
+        </packages>
+    </test>
+
+    <test name="Firefox Regression Tests">
+        <parameter name="browser" value="firefox"/>
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.parabank.tests"/>
+        </packages>
+    </test>
+
+</suite>
