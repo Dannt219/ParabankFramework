@@ -7,31 +7,28 @@ import org.openqa.selenium.WebDriver;
 
 public class RequestLoanPageObject extends BasePage {
 
-    private WebDriver driver;
-
     public RequestLoanPageObject(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     @Step("Enter loan amount: {amount}")
     public void enterLoanAmount(String amount) {
-        sendKeyToElement(driver, RequestLoanPageUI.LOAN_AMOUNT_INPUT, amount);
+        sendKeyToElement(RequestLoanPageUI.LOAN_AMOUNT_INPUT, amount);
     }
 
     @Step("Enter down payment: {downPayment}")
     public void enterDownPayment(String downPayment) {
-        sendKeyToElement(driver, RequestLoanPageUI.DOWN_PAYMENT_INPUT, downPayment);
+        sendKeyToElement(RequestLoanPageUI.DOWN_PAYMENT_INPUT, downPayment);
     }
 
     @Step("Select from account by index: {index}")
     public void selectFromAccountByIndex(int index) {
-        selectItemInDropdownByIndex(driver, RequestLoanPageUI.FROM_ACCOUNT_SELECT, index);
+        selectItemInDropdownByIndex(RequestLoanPageUI.FROM_ACCOUNT_SELECT, index);
     }
 
     @Step("Click Apply Now button")
     public void clickApply() {
-        clickToElement(driver, RequestLoanPageUI.APPLY_BUTTON);
+        clickToElement(RequestLoanPageUI.APPLY_BUTTON);
     }
 
     @Step("Request loan: amount={amount}, downPayment={downPayment}")
@@ -43,8 +40,8 @@ public class RequestLoanPageObject extends BasePage {
     }
 
     public String getLoanStatus() {
-        waitForElementVisible(driver, RequestLoanPageUI.APPROVED_MESSAGE);
-        return getElementText(driver, RequestLoanPageUI.APPROVED_MESSAGE);
+        waitForElementVisible(RequestLoanPageUI.APPROVED_MESSAGE);
+        return getElementText(RequestLoanPageUI.APPROVED_MESSAGE);
     }
 
     public boolean isLoanApproved() {
@@ -53,21 +50,21 @@ public class RequestLoanPageObject extends BasePage {
     }
 
     public boolean isLoanDenied() {
-        return isElementDisplayed(driver, RequestLoanPageUI.DENIED_MESSAGE);
+        return isElementDisplayed(RequestLoanPageUI.DENIED_MESSAGE);
     }
 
     public String getResultMessage() {
-        waitForElementVisible(driver, RequestLoanPageUI.RESULT_MESSAGE);
-        return getElementText(driver, RequestLoanPageUI.RESULT_MESSAGE);
+        waitForElementVisible(RequestLoanPageUI.RESULT_MESSAGE);
+        return getElementText(RequestLoanPageUI.RESULT_MESSAGE);
     }
 
     public String getNewAccountId() {
-        waitForElementVisible(driver, RequestLoanPageUI.NEW_ACCOUNT_ID);
-        return getElementText(driver, RequestLoanPageUI.NEW_ACCOUNT_ID);
+        waitForElementVisible(RequestLoanPageUI.NEW_ACCOUNT_ID);
+        return getElementText(RequestLoanPageUI.NEW_ACCOUNT_ID);
     }
 
     public String getPageHeader() {
-        waitForElementVisible(driver, RequestLoanPageUI.PAGE_TITLE);
-        return getElementText(driver, RequestLoanPageUI.PAGE_TITLE);
+        waitForElementVisible(RequestLoanPageUI.PAGE_TITLE);
+        return getElementText(RequestLoanPageUI.PAGE_TITLE);
     }
 }

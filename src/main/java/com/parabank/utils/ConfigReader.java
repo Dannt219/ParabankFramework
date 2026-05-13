@@ -33,14 +33,24 @@ public class ConfigReader {
     }
 
     public static String getProperty(String key) {
-        String value = properties.getProperty(key);
+        // System property takes precedence (enables CLI overrides for CI: -Dheadless=true)
+        String value = System.getProperty(key);
+        if (value != null) {
+            return value;
+        }
+        value = properties.getProperty(key);
         if (value == null) {
-            logger.warn("Property '{}' not found in config.properties", key);
+            throw new IllegalStateException(
+                    "Required property '" + key + "' not found in config.properties or as -D system property");
         }
         return value;
     }
 
     public static String getProperty(String key, String defaultValue) {
+        String value = System.getProperty(key);
+        if (value != null) {
+            return value;
+        }
         return properties.getProperty(key, defaultValue);
     }
 

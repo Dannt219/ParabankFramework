@@ -42,127 +42,105 @@ public abstract class BasePage {
         }
     }
 
-    private String getDynamicLocator(String locator, String... values) {
+    private String formatLocator(String locator, String... values) {
         return String.format(locator, (Object[]) values);
     }
 
     // ==================== Element Retrieval ====================
 
-    public WebElement getElement(WebDriver driver, String locator) {
+    private WebElement getElement(String locator) {
         return driver.findElement(getByLocator(locator));
     }
 
-    public WebElement getElement(WebDriver driver, String locator, String... values) {
-        return driver.findElement(getByLocator(getDynamicLocator(locator, values)));
-    }
-
-    public List<WebElement> getElements(WebDriver driver, String locator) {
+    protected List<WebElement> getElements(String locator) {
         return driver.findElements(getByLocator(locator));
     }
 
-    public List<WebElement> getElements(WebDriver driver, String locator, String... values) {
-        return driver.findElements(getByLocator(getDynamicLocator(locator, values)));
+    protected List<WebElement> getElements(String locator, String... values) {
+        return driver.findElements(getByLocator(formatLocator(locator, values)));
     }
 
     // ==================== Wait Methods ====================
 
-    public void waitForElementVisible(WebDriver driver, String locator) {
+    protected void waitForElementVisible(String locator) {
         waitHelper.waitForVisibility(getByLocator(locator));
     }
 
-    public void waitForElementVisible(WebDriver driver, String locator, String... values) {
-        waitHelper.waitForVisibility(getByLocator(getDynamicLocator(locator, values)));
+    protected void waitForElementVisible(String locator, String... values) {
+        waitHelper.waitForVisibility(getByLocator(formatLocator(locator, values)));
     }
 
-    public void waitForElementClickable(WebDriver driver, String locator) {
+    protected void waitForElementClickable(String locator) {
         waitHelper.waitForClickable(getByLocator(locator));
     }
 
-    public void waitForElementClickable(WebDriver driver, String locator, String... values) {
-        waitHelper.waitForClickable(getByLocator(getDynamicLocator(locator, values)));
+    protected void waitForElementClickable(String locator, String... values) {
+        waitHelper.waitForClickable(getByLocator(formatLocator(locator, values)));
     }
 
-    public void waitForElementPresence(WebDriver driver, String locator) {
-        waitHelper.waitForPresence(getByLocator(locator));
-    }
-
-    public void waitForElementInvisible(WebDriver driver, String locator) {
-        waitHelper.waitForInvisibility(getByLocator(locator));
-    }
-
-    public void waitForAllElementsVisible(WebDriver driver, String locator) {
+    protected void waitForAllElementsVisible(String locator) {
         waitHelper.waitForAllVisible(getByLocator(locator));
     }
 
     // ==================== Click Actions ====================
 
-    public void clickToElement(WebDriver driver, String locator) {
-        waitForElementClickable(driver, locator);
-        getElement(driver, locator).click();
+    protected void clickToElement(String locator) {
+        waitForElementClickable(locator);
+        getElement(locator).click();
     }
 
-    public void clickToElement(WebDriver driver, String locator, String... values) {
-        String dynamicLocator = getDynamicLocator(locator, values);
-        waitForElementClickable(driver, dynamicLocator);
-        getElement(driver, dynamicLocator).click();
+    protected void clickToElement(String locator, String... values) {
+        String dynamicLocator = formatLocator(locator, values);
+        waitForElementClickable(dynamicLocator);
+        getElement(dynamicLocator).click();
     }
 
     // ==================== Input Actions ====================
 
-    public void sendKeyToElement(WebDriver driver, String locator, String value) {
-        waitForElementVisible(driver, locator);
-        WebElement element = getElement(driver, locator);
+    protected void sendKeyToElement(String locator, String value) {
+        waitForElementVisible(locator);
+        WebElement element = getElement(locator);
         element.clear();
         element.sendKeys(value);
     }
 
-    public void sendKeyToElement(WebDriver driver, String locator, String value, String... dynamicValues) {
-        String dynamicLocator = getDynamicLocator(locator, dynamicValues);
-        waitForElementVisible(driver, dynamicLocator);
-        WebElement element = getElement(driver, dynamicLocator);
+    protected void sendKeyToElement(String locator, String value, String... dynamicValues) {
+        String dynamicLocator = formatLocator(locator, dynamicValues);
+        waitForElementVisible(dynamicLocator);
+        WebElement element = getElement(dynamicLocator);
         element.clear();
         element.sendKeys(value);
-    }
-
-    public void clearElement(WebDriver driver, String locator) {
-        waitForElementVisible(driver, locator);
-        getElement(driver, locator).clear();
     }
 
     // ==================== Text Retrieval ====================
 
-    public String getElementText(WebDriver driver, String locator) {
-        waitForElementVisible(driver, locator);
-        return getElement(driver, locator).getText();
+    protected String getElementText(String locator) {
+        waitForElementVisible(locator);
+        return getElement(locator).getText();
     }
 
-    public String getElementText(WebDriver driver, String locator, String... values) {
-        String dynamicLocator = getDynamicLocator(locator, values);
-        waitForElementVisible(driver, dynamicLocator);
-        return getElement(driver, dynamicLocator).getText();
-    }
-
-    public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
-        waitForElementVisible(driver, locator);
-        return getElement(driver, locator).getAttribute(attributeName);
+    protected String getElementText(String locator, String... values) {
+        String dynamicLocator = formatLocator(locator, values);
+        waitForElementVisible(dynamicLocator);
+        return getElement(dynamicLocator).getText();
     }
 
     // ==================== Display Check ====================
 
-    public boolean isElementDisplayed(WebDriver driver, String locator) {
+    protected boolean isElementDisplayed(String locator) {
         try {
-            waitForElementVisible(driver, locator);
-            return getElement(driver, locator).isDisplayed();
+            waitForElementVisible(locator);
+            return getElement(locator).isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
+    protected boolean isElementDisplayed(String locator, String... values) {
         try {
-            String dynamicLocator = getDynamicLocator(locator, values);
-            waitForElementVisible(driver, dynamicLocator);
-            return getElement(driver, dynamicLocator).isDisplayed();
+            String dynamicLocator = formatLocator(locator, values);
+            waitForElementVisible(dynamicLocator);
+            return getElement(dynamicLocator).isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -170,39 +148,18 @@ public abstract class BasePage {
 
     // ==================== Dropdown Actions ====================
 
-    public void selectItemInDropdownByText(WebDriver driver, String locator, String text) {
-        waitForElementVisible(driver, locator);
-        new Select(getElement(driver, locator)).selectByVisibleText(text);
+    protected void selectItemInDropdownByText(String locator, String text) {
+        waitForElementVisible(locator);
+        new Select(getElement(locator)).selectByVisibleText(text);
     }
 
-    public void selectItemInDropdownByValue(WebDriver driver, String locator, String value) {
-        waitForElementVisible(driver, locator);
-        new Select(getElement(driver, locator)).selectByValue(value);
+    protected void selectItemInDropdownByValue(String locator, String value) {
+        waitForElementVisible(locator);
+        new Select(getElement(locator)).selectByValue(value);
     }
 
-    public void selectItemInDropdownByIndex(WebDriver driver, String locator, int index) {
-        waitForElementVisible(driver, locator);
-        new Select(getElement(driver, locator)).selectByIndex(index);
-    }
-
-    // ==================== Element Count ====================
-
-    public int getElementCount(WebDriver driver, String locator) {
-        return getElements(driver, locator).size();
-    }
-
-    // ==================== Navigation ====================
-
-    public String getPageTitle(WebDriver driver) {
-        return driver.getTitle();
-    }
-
-    public String getCurrentUrl(WebDriver driver) {
-        return driver.getCurrentUrl();
-    }
-
-    public void navigateToUrl(WebDriver driver, String url) {
-        logger.info("Navigating to: {}", url);
-        driver.get(url);
+    protected void selectItemInDropdownByIndex(String locator, int index) {
+        waitForElementVisible(locator);
+        new Select(getElement(locator)).selectByIndex(index);
     }
 }

@@ -10,29 +10,26 @@ import java.util.List;
 
 public class AccountOverviewPageObject extends BasePage {
 
-    private WebDriver driver;
-
     public AccountOverviewPageObject(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     @Step("Get page header")
     public String getPageHeader() {
         waitHelper.waitForPageLoad();
-        waitForElementVisible(driver, AccountOverviewPageUI.PAGE_TITLE);
-        return getElementText(driver, AccountOverviewPageUI.PAGE_TITLE);
+        waitForElementVisible(AccountOverviewPageUI.PAGE_TITLE);
+        return getElementText(AccountOverviewPageUI.PAGE_TITLE);
     }
 
     @Step("Check if accounts table is displayed")
     public boolean isAccountsTableDisplayed() {
-        return isElementDisplayed(driver, AccountOverviewPageUI.ACCOUNTS_TABLE);
+        return isElementDisplayed(AccountOverviewPageUI.ACCOUNTS_TABLE);
     }
 
     @Step("Get list of account numbers")
     public List<String> getAccountNumbers() {
-        waitForAllElementsVisible(driver, AccountOverviewPageUI.ACCOUNT_LINKS);
-        List<WebElement> accounts = getElements(driver, AccountOverviewPageUI.ACCOUNT_LINKS);
+        waitForAllElementsVisible(AccountOverviewPageUI.ACCOUNT_LINKS);
+        List<WebElement> accounts = getElements(AccountOverviewPageUI.ACCOUNT_LINKS);
         return accounts.stream()
                 .map(WebElement::getText)
                 .filter(text -> !text.isEmpty())
@@ -47,52 +44,52 @@ public class AccountOverviewPageObject extends BasePage {
 
     @Step("Click Logout")
     public LoginPageObject logout() {
-        clickToElement(driver, AccountOverviewPageUI.LOGOUT_LINK);
+        clickToElement(AccountOverviewPageUI.LOGOUT_LINK);
         return new LoginPageObject(driver);
     }
 
     @Step("Navigate to Transfer Funds")
     public TransferFundsPageObject goToTransferFunds() {
-        clickToElement(driver, AccountOverviewPageUI.TRANSFER_FUNDS_LINK);
+        clickToElement(AccountOverviewPageUI.TRANSFER_FUNDS_LINK);
         return new TransferFundsPageObject(driver);
     }
 
     @Step("Navigate to Bill Pay")
     public BillPayPageObject goToBillPay() {
-        clickToElement(driver, AccountOverviewPageUI.BILL_PAY_LINK);
+        clickToElement(AccountOverviewPageUI.BILL_PAY_LINK);
         return new BillPayPageObject(driver);
     }
 
     @Step("Navigate to Find Transactions")
     public FindTransactionsPageObject goToFindTransactions() {
-        clickToElement(driver, AccountOverviewPageUI.FIND_TRANSACTIONS_LINK);
+        clickToElement(AccountOverviewPageUI.FIND_TRANSACTIONS_LINK);
         return new FindTransactionsPageObject(driver);
     }
 
     @Step("Navigate to Request Loan")
     public RequestLoanPageObject goToRequestLoan() {
-        clickToElement(driver, AccountOverviewPageUI.REQUEST_LOAN_LINK);
+        clickToElement(AccountOverviewPageUI.REQUEST_LOAN_LINK);
         return new RequestLoanPageObject(driver);
     }
 
     @Step("Navigate to Open New Account")
     public OpenAccountPageObject goToOpenAccount() {
-        clickToElement(driver, AccountOverviewPageUI.OPEN_ACCOUNT_LINK);
+        clickToElement(AccountOverviewPageUI.OPEN_ACCOUNT_LINK);
         return new OpenAccountPageObject(driver);
     }
 
     @Step("Navigate to Update Contact Info")
     public void goToUpdateContact() {
-        clickToElement(driver, AccountOverviewPageUI.UPDATE_CONTACT_LINK);
+        clickToElement(AccountOverviewPageUI.UPDATE_CONTACT_LINK);
     }
 
     @Step("Navigate to Accounts Overview")
     public AccountOverviewPageObject goToAccountsOverview() {
-        clickToElement(driver, AccountOverviewPageUI.ACCOUNTS_OVERVIEW_LINK);
+        clickToElement(AccountOverviewPageUI.ACCOUNTS_OVERVIEW_LINK);
         return this;
     }
 
     public boolean isLoggedIn() {
-        return isElementDisplayed(driver, AccountOverviewPageUI.LOGOUT_LINK);
+        return isElementDisplayed(AccountOverviewPageUI.LOGOUT_LINK);
     }
 }

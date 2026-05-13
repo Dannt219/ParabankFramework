@@ -49,8 +49,4 @@ public class ScreenshotUtil {
         }
     }
 
-    public static void attachScreenshotToAllure(WebDriver driver, String name) {
-        byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment(name, new ByteArrayInputStream(screenshotBytes));
-    }
 }

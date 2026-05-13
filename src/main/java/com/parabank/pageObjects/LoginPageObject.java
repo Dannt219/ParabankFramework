@@ -7,29 +7,26 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPageObject extends BasePage {
 
-    private WebDriver driver;
-
     public LoginPageObject(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     @Step("Enter username: {username}")
     public void enterUsername(String username) {
-        waitForElementVisible(driver, LoginPageUI.USERNAME_INPUT);
-        sendKeyToElement(driver, LoginPageUI.USERNAME_INPUT, username);
+        waitForElementVisible(LoginPageUI.USERNAME_INPUT);
+        sendKeyToElement(LoginPageUI.USERNAME_INPUT, username);
     }
 
     @Step("Enter password")
     public void enterPassword(String password) {
-        waitForElementVisible(driver, LoginPageUI.PASSWORD_INPUT);
-        sendKeyToElement(driver, LoginPageUI.PASSWORD_INPUT, password);
+        waitForElementVisible(LoginPageUI.PASSWORD_INPUT);
+        sendKeyToElement(LoginPageUI.PASSWORD_INPUT, password);
     }
 
     @Step("Click Login button")
     public void clickLoginButton() {
-        waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
-        clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+        waitForElementClickable(LoginPageUI.LOGIN_BUTTON);
+        clickToElement(LoginPageUI.LOGIN_BUTTON);
     }
 
     @Step("Login with credentials: {username}")
@@ -51,22 +48,22 @@ public class LoginPageObject extends BasePage {
 
     @Step("Get error message")
     public String getErrorMessage() {
-        waitForElementVisible(driver, LoginPageUI.ERROR_MESSAGE);
-        return getElementText(driver, LoginPageUI.ERROR_MESSAGE);
+        waitForElementVisible(LoginPageUI.ERROR_MESSAGE);
+        return getElementText(LoginPageUI.ERROR_MESSAGE);
     }
 
     public boolean isErrorDisplayed() {
-        return isElementDisplayed(driver, LoginPageUI.ERROR_MESSAGE);
+        return isElementDisplayed(LoginPageUI.ERROR_MESSAGE);
     }
 
     @Step("Click Register link")
     public RegisterPageObject clickRegister() {
-        clickToElement(driver, LoginPageUI.REGISTER_LINK);
+        clickToElement(LoginPageUI.REGISTER_LINK);
         return new RegisterPageObject(driver);
     }
 
     public boolean isLoginPageDisplayed() {
-        return isElementDisplayed(driver, LoginPageUI.USERNAME_INPUT)
-                && isElementDisplayed(driver, LoginPageUI.PASSWORD_INPUT);
+        return isElementDisplayed(LoginPageUI.USERNAME_INPUT)
+                && isElementDisplayed(LoginPageUI.PASSWORD_INPUT);
     }
 }

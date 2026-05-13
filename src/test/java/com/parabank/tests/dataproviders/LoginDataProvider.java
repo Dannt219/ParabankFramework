@@ -13,11 +13,4 @@ public class LoginDataProvider {
                 {"!@#$%", "!@#$%", "could not be verified"}
         };
     }
-
-    @DataProvider(name = "validLoginData")
-    public static Object[][] validLoginData() {
-        return new Object[][]{
-                {"john", "demo"}
-        };
-    }
 }

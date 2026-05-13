@@ -1,7 +1,6 @@
 package com.parabank.utils;
 
 import com.parabank.constants.FrameworkConstants;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +30,6 @@ public class DriverFactory {
 
         switch (browser.toLowerCase()) {
             case FrameworkConstants.FIREFOX -> {
-                WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (headless) {
                     firefoxOptions.addArguments("-headless");
@@ -40,7 +38,6 @@ public class DriverFactory {
                 logger.info("Firefox browser initialized");
             }
             default -> {
-                WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (headless) {
                     chromeOptions.addArguments("--headless=new");
@@ -54,7 +51,6 @@ public class DriverFactory {
             }
         }
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(FrameworkConstants.IMPLICIT_WAIT_TIMEOUT));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(FrameworkConstants.PAGE_LOAD_TIMEOUT));
         driver.manage().window().maximize();
 

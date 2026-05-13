@@ -18,7 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.18.1</selenium.version>
         <testng.version>7.9.0</testng.version>
-        <webdrivermanager.version>5.7.0</webdrivermanager.version>
         <allure.version>2.25.0</allure.version>
         <log4j.version>2.22.1</log4j.version>
         <jackson.version>2.16.1</jackson.version>
@@ -38,13 +37,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
-
-        <!-- WebDriverManager -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
         </dependency>
 
         <!-- Allure TestNG -->

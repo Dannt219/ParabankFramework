@@ -7,26 +7,23 @@ import org.openqa.selenium.WebDriver;
 
 public class OpenAccountPageObject extends BasePage {
 
-    private WebDriver driver;
-
     public OpenAccountPageObject(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     @Step("Select account type: {accountType}")
     public void selectAccountType(String accountType) {
-        selectItemInDropdownByText(driver, OpenAccountPageUI.ACCOUNT_TYPE_SELECT, accountType);
+        selectItemInDropdownByText(OpenAccountPageUI.ACCOUNT_TYPE_SELECT, accountType);
     }
 
     @Step("Select from account by index: {index}")
     public void selectFromAccountByIndex(int index) {
-        selectItemInDropdownByIndex(driver, OpenAccountPageUI.FROM_ACCOUNT_SELECT, index);
+        selectItemInDropdownByIndex(OpenAccountPageUI.FROM_ACCOUNT_SELECT, index);
     }
 
     @Step("Click Open New Account button")
     public void clickOpenAccount() {
-        clickToElement(driver, OpenAccountPageUI.OPEN_ACCOUNT_BUTTON);
+        clickToElement(OpenAccountPageUI.OPEN_ACCOUNT_BUTTON);
     }
 
     @Step("Open new {accountType} account")
@@ -37,17 +34,17 @@ public class OpenAccountPageObject extends BasePage {
     }
 
     public String getSuccessMessage() {
-        waitForElementVisible(driver, OpenAccountPageUI.SUCCESS_MESSAGE);
-        return getElementText(driver, OpenAccountPageUI.SUCCESS_MESSAGE);
+        waitForElementVisible(OpenAccountPageUI.SUCCESS_MESSAGE);
+        return getElementText(OpenAccountPageUI.SUCCESS_MESSAGE);
     }
 
     public String getNewAccountId() {
-        waitForElementVisible(driver, OpenAccountPageUI.NEW_ACCOUNT_ID);
-        return getElementText(driver, OpenAccountPageUI.NEW_ACCOUNT_ID);
+        waitForElementVisible(OpenAccountPageUI.NEW_ACCOUNT_ID);
+        return getElementText(OpenAccountPageUI.NEW_ACCOUNT_ID);
     }
 
     public String getPageHeader() {
-        waitForElementVisible(driver, OpenAccountPageUI.PAGE_TITLE);
-        return getElementText(driver, OpenAccountPageUI.PAGE_TITLE);
+        waitForElementVisible(OpenAccountPageUI.PAGE_TITLE);
+        return getElementText(OpenAccountPageUI.PAGE_TITLE);
     }
 }
